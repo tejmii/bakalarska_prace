@@ -1,0 +1,32 @@
+name: "DataZeSenzoru"
+manufacturer: "Raspberry Pi "
+model: "Raspberry Pi 3b+"
+labels:
+  - "rpi"
+description: "Data ze senzoru"
+
+deviceResources:
+      -
+        name: pir
+        description: "Cas + pohyb data -> 0/1"
+        properties:
+            value:
+             { type: "String", readWrite: "RW", LSB: "true", defaultValue: "0"}
+      -
+        name: teplota
+        description: "Cas + teplota ve stupnich celsia"
+        properties:
+            value:
+             { type: "String", readWrite: "RW", LSB: "true", defaultValue: "0"}
+      -
+        name: vlhkost
+        description: "Cas + vlhkost v procentech"
+        properties:
+            value:
+             { type: "String", readWrite: "RW", LSB: "true", defaultValue: "0"}
+      -
+        name: vibrace
+        description: "Cas + vibrace data -> 0/1"
+        properties:
+            value:
+             { type: "String", readWrite: "RW", LSB: "true", defaultValue: "0"}

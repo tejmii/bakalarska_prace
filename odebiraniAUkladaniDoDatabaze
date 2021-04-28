@@ -1,0 +1,49 @@
+import paho.mqtt.client as paho
+import json
+import pymysql
+from datetime import datetime
+
+def on_subscribe(client, userdata, mid, granted_qos):
+    print("Subscribed: "+str(mid)+" "+str(granted_qos))
+
+def on_message(client, userdataa, msg):
+    print(msg.payload.decode("utf-8"))
+    json_data = json.loads(msg.payload.decode("utf-8"))
+    time = "";
+    value = "";
+    table = "";
+    for k in json_data["readings"]:
+        table = k["name"]
+        a = k["value"].split(" ")
+        time = a[1] + " " + a[2].replace('"','')
+        print(time)
+        value = a[0].replace('"','')
+    to_database(time, value, table)
+
+def to_database(time, value, table):
+    cursor = connection.cursor()
+    try:
+        if (table == "vlhkost"):
+                cursor.execute("""INSERT into vlhkost (date,vlhkost) values(%s,%s)""",(time,int(value)))
+        if (table == "teplota"):
+                cursor.execute("""INSERT into teplota (date,teplota) values(%s,%s)""",(time,int(value)))
+        if (table == "pir"):
+                cursor.execute("""INSERT into pir (date,pir) values(%s,%s)""",(time,int(value)))
+        if (table == "vibrace"):
+                cursor.execute("""INSERT into vibrace (date,vibrace) values(%s,%s)""",(time,int(value)))
+        connection.commit()
+        print("Hotovo")
+    except:
+        connection.rollback()
+
+
+connection = pymysql.connect(host="localhost",user="tom",password="123456789", database="senzory")
+client = paho.Client()
+client.on_subscribe = on_subscribe
+client.on_message = on_message
+broker="broker.mqttdashboard.com"
+topic ="tomas-mejzr-123"
+client.connect(broker, 1883)
+client.subscribe(topic, qos=2)
+
+client.loop_forever()

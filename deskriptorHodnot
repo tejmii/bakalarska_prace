@@ -1,0 +1,51 @@
+{
+"name": "vlhkost",
+"description": "Cas + vlhkost v procentech",
+"type": "String",
+"uomLabel": "vlhkost",
+"defaultValue": "0",
+"formatting": "%s",
+"labels": [
+"senzor",
+"senzory"
+]
+}
+
+{
+"name": "teplota",
+"description": "Cas + teplota ve stupnich celsia",
+"type": "String",
+"uomLabel": "teplota",
+"defaultValue": "0",
+"formatting": "%s",
+"labels": [
+"senzor",
+"senzory"
+]
+}
+
+{
+"name": "pir",
+"description": "Cas + Pohybove data -> 0/1",
+"type": "String",
+"uomLabel": "pir",
+"defaultValue": "0",
+"formatting": "%s",
+"labels": [
+"senzor",
+"senzory"
+]
+}
+
+{
+"name": "vibrace",
+"description": "Cas + vibrace data -> 0/1",
+"type": "String",
+"uomLabel": "vibrace",
+"defaultValue": "0",
+"formatting": "%s",
+"labels": [
+"senzor",
+"senzory"
+]
+}

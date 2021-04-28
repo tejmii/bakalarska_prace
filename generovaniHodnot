@@ -1,0 +1,30 @@
+import requests
+import json
+import time
+import random
+from datetime import datetime
+
+def teplota():
+	url = url = 'http://10.0.1.75:49986/api/v1/resource/Senzory/teplota'
+	dt = datetime.now()
+	local = dt.strftime('%Y-%m-%d %H:%M:%S')
+	myobj = str(random.randint(20,35)) + " "+local
+	headers = {'content-type': 'application/json'}
+	response = requests.post(url, data=json.dumps(myobj), headers=headers, verify=False)
+	print (response,  " ", myobj)
+
+def vlhkost():
+	url = url = 'http://10.0.1.75:49986/api/v1/resource/Senzory/vlhkost'
+	dt = datetime.now()
+	local = dt.strftime('%Y-%m-%d %H:%M:%S')
+	myobj = str(random.randint(60,81)) + " "+local
+	headers = {'content-type': 'application/json'}
+	response = requests.post(url, data=json.dumps(myobj), headers=headers, verify=False)
+	print (response,  " ", myobj)
+
+
+if __name__ == "__main__":
+	while(1):
+		teplota()
+		vlhkost()
+		time.sleep(5)
