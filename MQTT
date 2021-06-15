@@ -1,5 +1,5 @@
 app-service-mqtt:
-      image: edgexfoundry/docker-app-service-configurable:1.1.0
+      image: edgexfoundry/docker-app-service-configurable-arm64:1.1.0
       ports:
         - "0.0.0.0:48101:48101"
       container_name: edgex-app-service-configurable-mqtt
